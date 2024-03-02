@@ -46,8 +46,6 @@ for i in ShutdownTimes:
         showToastTime = i[1]
 
 
-
-
 # 等待
 while (ShutdownSec > GetNowSec()):
     time.sleep(1)
