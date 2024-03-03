@@ -49,10 +49,10 @@ for i in ShutdownTimes:
 # 等待
 while (ShutdownSec > GetNowSec()):
     time.sleep(1)
-    if not (IsShow):
+    if not IsShow:
         if ShutdownSec - showToastTime * 60 < GetNowSec():
             print(ShutdownSec - showToastTime * 60)
-            ShowToast(showToastTime)
+            ShowToast((ShutdownSec - showToastTime * 60)/60)
             IsShow = True
 
     print('\r倒计时:' + format_seconds(ShutdownSec - GetNowSec()), end='')
