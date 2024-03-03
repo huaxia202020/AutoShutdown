@@ -1,7 +1,7 @@
 import os
 import time
 from win11toast import toast
-
+import datetime
 
 def GetNowSec():
     return time.localtime(time.time()).tm_hour * 3600 + time.localtime(time.time()).tm_min * 60 + time.localtime(
@@ -44,6 +44,14 @@ for i in ShutdownTimes:
     t = i[0].split(':')
     if (int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec):
         showToastTime = i[1]
+
+
+
+
+current_date = datetime.datetime.now().date()
+if current_date.weekday() == 6:
+    toast('AutoShutdown', '今天为星期日，不在计划关机内，注意手动关机')
+    exit()
 
 
 # 等待
