@@ -17,7 +17,7 @@ def Shutdown():
     ShowToast(1)
     time.sleep(30)
     os.system("shutdown -s -t 30")
-    os.system("start .")
+    os.system("start /MAX .")
     exit()
 
 
