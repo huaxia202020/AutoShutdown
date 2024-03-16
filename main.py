@@ -1,5 +1,7 @@
 import os
 import time
+from decimal import Decimal
+
 from win11toast import toast
 import datetime
 
@@ -25,12 +27,21 @@ def ShowToast(st):
     toast('AutoShutdown', '计算机将在' + str(st) + '分钟后关闭')
 
 
-ShutdownTimes = [['12:00', 35], ['17:15', 55], ['21:30', 5]]
+
+#数据定义
+ShutdownTimes = [['12:00', 35], ['17:15', 55],['21:30', 5]]
 ShutdownTimesSec = []
 ShutdownSec = 0
 showToastTime = 0
 IsShow = False
 
+current_date = datetime.datetime.now().date()
+if current_date.weekday() == 6:
+    toast('AutoShutdown', '今天为星期日，启用新的关机计划')
+    ShutdownTimes = [['17:40',], ['21:30', 5]]
+    exit()
+if current_date.weekday() == 5:
+    exit()
 # 数据整理
 for i in ShutdownTimes:
     t = i[0].split(':')
@@ -48,10 +59,7 @@ for i in ShutdownTimes:
 
 
 
-current_date = datetime.datetime.now().date()
-if current_date.weekday() == 6:
-    toast('AutoShutdown', '今天为星期日，不在计划关机内，注意手动关机')
-    exit()
+
 
 
 # 等待
@@ -60,7 +68,8 @@ while (ShutdownSec > GetNowSec()):
     if not IsShow:
         if ShutdownSec - showToastTime * 60 < GetNowSec():
             print(ShutdownSec - showToastTime * 60)
-            ShowToast((ShutdownSec - showToastTime * 60)/60)
+
+            ShowToast(Decimal((ShutdownSec - GetNowSec())/60).quantize(Decimal("0.01"), rounding="ROUND_HALF_UP"))
             IsShow = True
 
     print('\r倒计时:' + format_seconds(ShutdownSec - GetNowSec()), end='')
