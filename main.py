@@ -56,12 +56,6 @@ for i in ShutdownTimes:
     if (int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec):
         showToastTime = i[1]
 
-
-
-
-
-
-
 # 等待
 while (ShutdownSec > GetNowSec()):
     time.sleep(1)
@@ -74,3 +68,9 @@ while (ShutdownSec > GetNowSec()):
 
     print('\r倒计时:' + format_seconds(ShutdownSec - GetNowSec()), end='')
 Shutdown()
+
+
+
+
+
+
