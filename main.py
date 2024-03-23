@@ -39,9 +39,14 @@ current_date = datetime.datetime.now().date()
 if current_date.weekday() == 6:
     toast('AutoShutdown', '今天为星期日，启用新的关机计划')
     ShutdownTimes = [['17:40',], ['21:30', 5]]
-    exit()
 if current_date.weekday() == 5:
     exit()
+
+
+
+
+
+
 # 数据整理
 for i in ShutdownTimes:
     t = i[0].split(':')
