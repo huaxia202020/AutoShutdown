@@ -1,6 +1,5 @@
 import datetime
 from decimal import Decimal
-import PreventingClosure
 from MainLib import *
 
 # 数据定义
