@@ -16,12 +16,12 @@ for i in ShutdownTimes:
     ShutdownTimesSec.append(int(t[0]) * 3600 + int(t[1]) * 60)
 ShutdownTimesSec.sort()
 for i in ShutdownTimesSec:
-    if (i > GetNowSec()):
+    if i > get_now_sec():
         ShutdownSec = i
         break
 for i in ShutdownTimes:
     t = i[0].split(':')
-    if (int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec):
+    if int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec:
         showToastTime = i[1]
 
 # 排除处理
@@ -38,14 +38,14 @@ try:
 except Exception as e:
     print(f'更新时出现错误: {e}')
 # 等待
-while (ShutdownSec > GetNowSec()):
+while ShutdownSec > get_now_sec():
     time.sleep(1)
     if not IsShow:
-        if ShutdownSec - showToastTime * 60 < GetNowSec():
+        if ShutdownSec - showToastTime * 60 < get_now_sec():
             print(ShutdownSec - showToastTime * 60)
 
-            ShowToast(Decimal((ShutdownSec - GetNowSec()) / 60).quantize(Decimal("0.01"), rounding="ROUND_HALF_UP"))
+            show_toast(Decimal((ShutdownSec - get_now_sec()) / 60).quantize(Decimal("0.01"), rounding="ROUND_HALF_UP"))
             IsShow = True
 
-    print('\r关机倒计时:' + format_seconds(ShutdownSec - GetNowSec()), end='')
-Shutdown()
+    print('\r关机倒计时:' + format_seconds(ShutdownSec - get_now_sec()), end='')
+shutdown()

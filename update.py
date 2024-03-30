@@ -12,17 +12,17 @@ download_url = "https://github.com/huaxia202020/AutoShutdown/archive/master.zip"
 def copy_dir(src_path, target_path):
     if os.path.isdir(src_path) and os.path.isdir(target_path):
         filelist_src = os.listdir(src_path)
-        for file in filelist_src:
-            path = os.path.join(os.path.abspath(src_path), file)
+        for copy_file in filelist_src:
+            path = os.path.join(os.path.abspath(src_path), copy_file)
             if os.path.isdir(path):
-                path1 = os.path.join(os.path.abspath(target_path), file)
+                path1 = os.path.join(os.path.abspath(target_path), copy_file)
                 if not os.path.exists(path1):
                     os.mkdir(path1)
                 copy_dir(path, path1)
             else:
                 with open(path, 'rb') as read_stream:
                     contents = read_stream.read()
-                    path1 = os.path.join(target_path, file)
+                    path1 = os.path.join(target_path, copy_file)
                     with open(path1, 'wb') as write_stream:
                         write_stream.write(contents)
         return True
@@ -49,8 +49,8 @@ old = is_old(os.path.getmtime('./last_update.txt'))
 
 if old:
     print('检查到更新')
-    myfile = requests.get(download_url)
-    open('AS.zip', 'wb').write(myfile.content)
+    new_file = requests.get(download_url)
+    open('AS.zip', 'wb').write(new_file.content)
     # 解压
     file = zipfile.ZipFile('AS.zip')
     file.extractall('./')
