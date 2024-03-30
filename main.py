@@ -1,7 +1,6 @@
 import os
 import time
 from decimal import Decimal
-
 from win11toast import toast
 import datetime
 
