@@ -51,8 +51,9 @@ def is_old(old_time):
     else:
         return False
 
+
 if not os.path.exists('./UpdateLogs'):
-    open('UpdateLogs', 'w').write(str(time.localtime(time.time()))+"\n")
+    open('UpdateLogs', 'w').write(str(time.localtime(time.time())) + "\n")
 old = is_old(os.path.getmtime('./UpdateLogs'))
 
 if old:
@@ -69,7 +70,7 @@ if old:
     copy_dir('./AutoShutdown-master', './')
     shutil.rmtree('./AutoShutdown-master')
     # 创建日期文件
-    open('UpdateLogs', 'a').write(str(time.localtime(time.time()))+"\n")
+    open('UpdateLogs', 'a').write(str(time.localtime(time.time())) + "\n")
     print('更新完成')
 else:
     print('无更新')
