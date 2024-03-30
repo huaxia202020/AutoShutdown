@@ -3,6 +3,8 @@ from decimal import Decimal
 
 from ShutdownLib import *
 
+os.system("title 这是一个无害的小程序,请不要随意关闭它")
+
 # 数据定义
 ShutdownTimes = [['12:00', 35], ['17:15', 55], ['21:30', 5]]
 ShutdownTimesSec = []
