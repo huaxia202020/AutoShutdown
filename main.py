@@ -1,5 +1,4 @@
 import datetime
-import time
 from decimal import Decimal
 
 from MainLib import *
@@ -39,7 +38,7 @@ try:
 except Exception as e:
     print(f'更新时出现错误: {e}')
 # 等待
-print("下一次关机时间:{}:{}".format(str(time.localtime(ShutdownSec).tm_min),str(time.localtime(ShutdownSec).tm_sec)))
+print("下一次关机时间:{}:{}".format(str(time.localtime(ShutdownSec).tm_min), str(time.localtime(ShutdownSec).tm_sec)))
 while ShutdownSec > get_now_sec():
     time.sleep(1)
     if not IsShow:
