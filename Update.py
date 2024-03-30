@@ -5,7 +5,7 @@ from UpdateLib import *
 
 # 更新日志初始化
 if not os.path.exists('./UpdateLogs.txt'):
-    open('UpdateLogs.txt', 'w').write(str(time.localtime(time.time())) + "\n")
+    open('./UpdateLogs.txt', 'w').write(str(time.localtime(time.time())) + "\n")
 
 # 更新流程
 old = is_old(os.path.getmtime('./UpdateLogs.txt'))
@@ -24,7 +24,7 @@ if old:
     copy_dir('./AutoShutdown-master', './')
     shutil.rmtree('./AutoShutdown-master')
     # 添加更新日志
-    open('UpdateLogs', 'a').write(str(time.localtime(time.time())) + "\n")
+    open('./UpdateLogs.txt', 'a').write(str(time.localtime(time.time())) + "\n")
     print('更新完成')
 else:
     print('AS在GitHub中无新的推送')
