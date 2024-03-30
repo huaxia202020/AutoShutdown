@@ -4,11 +4,11 @@ import zipfile
 from UpdateLib import *
 
 # 更新日志初始化
-if not os.path.exists('./UpdateLogs'):
+if not os.path.exists('./UpdateLogs.txt'):
     open('UpdateLogs.txt', 'w').write(str(time.localtime(time.time())) + "\n")
 
 # 更新流程
-old = is_old(os.path.getmtime('./UpdateLogs'))
+old = is_old(os.path.getmtime('./UpdateLogs.txt'))
 if old:
     print('检查到新的推送,正在下载')
     # 下载
