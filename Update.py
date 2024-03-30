@@ -1,15 +1,16 @@
 import shutil
+import time
 import zipfile
 
 from UpdateLib import *
 
 # 更新日志初始化
 if not os.path.exists('./UpdateLogs.txt'):
-    open('./UpdateLogs.txt', 'w').write(str(time.localtime(time.time())) + "\n")
+    lt=time.localtime(time.time())
+    open('./UpdateLogs.txt', 'w',encoding='utf-8').write("日志创建时间:{}-{}-{} {}:{}".format(lt.tm_year,lt.tm_mon,lt.tm_mday,lt.tm_hour,lt.tm_min) + "\n")
 
 # 更新流程
-old = is_old(os.path.getmtime('./UpdateLogs.txt'))
-if old:
+if is_old(os.path.getmtime('./UpdateLogs.txt')):
     print('检查到新的推送,正在下载')
     # 下载
     new_file = requests.get(download_url)
@@ -24,7 +25,9 @@ if old:
     copy_dir('./AutoShutdown-master', './')
     shutil.rmtree('./AutoShutdown-master')
     # 添加更新日志
-    open('./UpdateLogs.txt', 'a').write(str(time.localtime(time.time())) + "\n")
+    lt = time.localtime(time.time())
+    #拉取版本推送时间：{}-{}-{} {}:{}
+    open('./UpdateLogs.txt', 'a').write("同步更新时间:{}-{}-{} {}:{}".format(lt.tm_year,lt.tm_mon,lt.tm_mday,lt.tm_hour,lt.tm_min) + "\n")
     print('已完成从GitHUb的同步更新')
 else:
     print('AS在GitHub中无新的推送')
