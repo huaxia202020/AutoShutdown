@@ -3,8 +3,8 @@ from decimal import Decimal
 
 from MainLib import *
 
-#数据定义
-ShutdownTimes = [['12:00', 35], ['17:15', 55],['21:30', 5]]
+# 数据定义
+ShutdownTimes = [['12:00', 35], ['17:15', 55], ['21:30', 5]]
 ShutdownTimesSec = []
 ShutdownSec = 0
 showToastTime = 0
@@ -24,15 +24,15 @@ for i in ShutdownTimes:
     if (int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec):
         showToastTime = i[1]
 
-#排除处理
+# 排除处理
 current_date = datetime.datetime.now().date()
 if current_date.weekday() == 6:
     toast('AutoShutdown', '今天为星期日，启用新的关机计划')
-    ShutdownTimes = [['17:40',45], ['21:30', 5]]
+    ShutdownTimes = [['17:40', 45], ['21:30', 5]]
 if current_date.weekday() == 5:
     pass
 
-#更新
+# 更新
 try:
     import update
 except Exception as e:
@@ -44,13 +44,8 @@ while (ShutdownSec > GetNowSec()):
         if ShutdownSec - showToastTime * 60 < GetNowSec():
             print(ShutdownSec - showToastTime * 60)
 
-            ShowToast(Decimal((ShutdownSec - GetNowSec())/60).quantize(Decimal("0.01"), rounding="ROUND_HALF_UP"))
+            ShowToast(Decimal((ShutdownSec - GetNowSec()) / 60).quantize(Decimal("0.01"), rounding="ROUND_HALF_UP"))
             IsShow = True
 
     print('\r关机倒计时:' + format_seconds(ShutdownSec - GetNowSec()), end='')
 Shutdown()
-
-
-
-
-
