@@ -39,7 +39,8 @@ except Exception as e:
     print(f'更新时出现错误: {e}')
 
 # 等待
-logger.info("AS关机倒计时已启动,关机时间:{}:{}(3分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
+logger.info(
+    "AS关机倒计时已启动,关机时间:{}:{}(3分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
 print("AS关机倒计时已启动,关机时间:{}:{}(3分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
 while ShutdownSec > get_now_sec():
     time.sleep(1)
