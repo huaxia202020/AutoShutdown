@@ -8,4 +8,3 @@ logging.basicConfig(filename='./logs/{}-{}-{}-AS-Log.txt'.format(lt.tm_year,lt.t
                     format = '[%(asctime)s - %(name)s - %(funcName)s - %(levelname)s ] %(message)s',
                     level=logging.ERROR)
 logger = logging.getLogger('AS')
-logger.error("as")
