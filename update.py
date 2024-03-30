@@ -51,7 +51,6 @@ def is_old(old_time):
     else:
         return False
 
-
 if not os.path.exists('./UpdateLogs'):
     open('UpdateLogs', 'w').write(str(time.localtime(time.time()))+"\n")
 old = is_old(os.path.getmtime('./UpdateLogs'))
