@@ -57,7 +57,7 @@ if not os.path.exists('./UpdateLogs'):
 old = is_old(os.path.getmtime('./UpdateLogs'))
 
 if old:
-    print('检查到更新')
+    print('检查到新的推送,正在下载')
     new_file = requests.get(download_url)
     open('AS.zip', 'wb').write(new_file.content)
     # 解压
@@ -73,4 +73,4 @@ if old:
     open('UpdateLogs', 'a').write(str(time.localtime(time.time())) + "\n")
     print('更新完成')
 else:
-    print('无更新')
+    print('AS在GitHub中无新的推送')
