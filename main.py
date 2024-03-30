@@ -1,7 +1,7 @@
 import datetime
 from decimal import Decimal
 
-from MainLib import *
+from ShutdownLib import *
 
 # 数据定义
 ShutdownTimes = [['12:00', 35], ['17:15', 55], ['21:30', 5]]
@@ -34,12 +34,13 @@ if current_date.weekday() == 5:
 
 # 更新
 try:
-    import update
+    import Update
 except Exception as e:
     print(f'更新时出现错误: {e}')
+
 # 等待
-logger.info("AS已启动"+"下一次关机时间:{}:{}".format(int(ShutdownSec/3600), int(ShutdownSec%3600/60)))
-print("下一次关机时间:{}:{}".format(int(ShutdownSec/3600), int(ShutdownSec%3600/60)))
+logger.info("AS关机倒计时已启动,关机时间:{}:{}(3分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
+print("AS关机倒计时已启动,关机时间:{}:{}(3分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
 while ShutdownSec > get_now_sec():
     time.sleep(1)
     if not IsShow:

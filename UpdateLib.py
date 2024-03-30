@@ -1,10 +1,9 @@
 import os
-import shutil
 import time
-import zipfile
 
 import requests
 
+# 地址
 api_url = "https://api.github.com/repos/huaxia202020/AutoShutdown"
 download_url = "https://github.com/huaxia202020/AutoShutdown/archive/master.zip"
 
@@ -40,7 +39,7 @@ def is_old(old_time):
     print("最后更新时间:" + "{}-{}-{} {}:{}".format(lo_old_time.tm_year, lo_old_time.tm_mon,
                                                     lo_old_time.tm_mday, lo_old_time.tm_hour,
                                                     lo_old_time.tm_min))
-    print("最新推送时间:" + "{}-{}-{} {}:{}".format(lo_new_time.tm_year,lo_new_time.tm_mon,
+    print("最新推送时间:" + "{}-{}-{} {}:{}".format(lo_new_time.tm_year, lo_new_time.tm_mon,
                                                     lo_new_time.tm_mday, lo_new_time.tm_hour,
                                                     lo_new_time.tm_min))
 
@@ -50,27 +49,3 @@ def is_old(old_time):
         return True
     else:
         return False
-
-
-if not os.path.exists('./UpdateLogs'):
-    open('UpdateLogs.txt', 'w').write(str(time.localtime(time.time())) + "\n")
-old = is_old(os.path.getmtime('./UpdateLogs'))
-
-if old:
-    print('检查到新的推送,正在下载')
-    new_file = requests.get(download_url)
-    open('AS.zip', 'wb').write(new_file.content)
-    # 解压
-    file = zipfile.ZipFile('AS.zip')
-    file.extractall('./')
-    file.close()
-    # 清理
-    os.remove('AS.zip')
-    shutil.rmtree('./AutoShutdown-master/.idea')
-    copy_dir('./AutoShutdown-master', './')
-    shutil.rmtree('./AutoShutdown-master')
-    # 创建日期文件
-    open('UpdateLogs', 'a').write(str(time.localtime(time.time())) + "\n")
-    print('更新完成')
-else:
-    print('AS在GitHub中无新的推送')
