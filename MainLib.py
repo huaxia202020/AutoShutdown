@@ -3,6 +3,8 @@ import time
 
 from win11toast import toast
 
+from LogLib import logger
+
 
 def get_now_sec():
     return time.localtime(time.time()).tm_hour * 3600 + time.localtime(time.time()).tm_min * 60 + time.localtime(
@@ -16,6 +18,7 @@ def format_seconds(seconds):
 
 
 def shutdown():
+    logger.info("已进入关机进程")
     time.sleep(120)
     show_toast(1)
     time.sleep(30)
