@@ -53,7 +53,7 @@ def is_old(old_time):
 
 
 if not os.path.exists('./last_update.txt'):
-    open('last_update.txt', 'w').write(str(time.localtime(time.time())))
+    open('last_update.txt', 'w').write(str(time.localtime(time.time()))+"\n")
 old = is_old(os.path.getmtime('./last_update.txt'))
 
 if old:
@@ -70,7 +70,7 @@ if old:
     copy_dir('./AutoShutdown-master', './')
     shutil.rmtree('./AutoShutdown-master')
     # 创建日期文件
-    open('last_update.txt', 'a').write(str(time.localtime(time.time())))
+    open('last_update.txt', 'a').write(str(time.localtime(time.time()))+"\n")
     print('更新完成')
 else:
     print('无更新')
