@@ -25,6 +25,6 @@ if old:
     shutil.rmtree('./AutoShutdown-master')
     # 添加更新日志
     open('./UpdateLogs.txt', 'a').write(str(time.localtime(time.time())) + "\n")
-    print('更新完成')
+    print('已完成从GitHUb的同步更新')
 else:
     print('AS在GitHub中无新的推送')
