@@ -5,6 +5,7 @@ from decimal import Decimal
 from win11toast import toast
 import datetime
 
+
 def GetNowSec():
     return time.localtime(time.time()).tm_hour * 3600 + time.localtime(time.time()).tm_min * 60 + time.localtime(
         time.time()).tm_sec
