@@ -6,7 +6,8 @@ import requests
 # 地址
 api_url = "https://api.github.com/repos/huaxia202020/AutoShutdown"
 download_url = "https://github.com/huaxia202020/AutoShutdown/archive/master.zip"
-lo_push_time=time.localtime()
+lo_push_time = time.localtime()
+
 
 def copy_dir(src_path, target_path):
     if os.path.isdir(src_path) and os.path.isdir(target_path):
@@ -37,11 +38,11 @@ def is_old(old_time):
     lo_old_time = time.localtime(old_time)
     lo_push_time = time.localtime(new_time)
     print("最后更新时间:{}-{}-{} {}:{}".format(lo_old_time.tm_year, lo_old_time.tm_mon,
-                                                    lo_old_time.tm_mday, lo_old_time.tm_hour,
-                                                    lo_old_time.tm_min))
+                                               lo_old_time.tm_mday, lo_old_time.tm_hour,
+                                               lo_old_time.tm_min))
     print("最新推送时间:{}-{}-{} {}:{}".format(lo_push_time.tm_year, lo_push_time.tm_mon,
-                                                    lo_push_time.tm_mday, lo_push_time.tm_hour,
-                                                    lo_push_time.tm_min))
+                                               lo_push_time.tm_mday, lo_push_time.tm_hour,
+                                               lo_push_time.tm_min))
 
     if not old_time:
         old_time = all_info["pushed_at"]

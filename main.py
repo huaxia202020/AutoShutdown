@@ -7,25 +7,27 @@ os.system("title 这是一个无害的小程序,请不要随意关闭它")
 
 # 数据定义
 ShutdownTimes = [['12:00', 35], ['17:15', 55], ['21:30', 5]]
-ShutdownTimesSec = []
-ShutdownSec = 0
-showToastTime = 0
 IsShow = False
 
 # 数据整理
+# 排序
+ShutdownTimesSec = []
 for i in ShutdownTimes:
     t = i[0].split(':')
     ShutdownTimesSec.append(int(t[0]) * 3600 + int(t[1]) * 60)
 ShutdownTimesSec.sort()
+# 找出最近的关机时间
+ShutdownSec = 0
 for i in ShutdownTimesSec:
     if i > get_now_sec():
         ShutdownSec = i
         break
+# 找出提示时间
+showToastTime = 0
 for i in ShutdownTimes:
     t = i[0].split(':')
     if int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec:
         showToastTime = i[1]
-
 
 # 更新
 try:
