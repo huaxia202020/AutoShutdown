@@ -26,6 +26,13 @@ for i in ShutdownTimes:
     if int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec:
         showToastTime = i[1]
 
+
+# 更新
+try:
+    import Update
+except Exception as e:
+    print(f'更新时出现错误: {e}')
+
 # 排除处理
 current_date = datetime.datetime.now().date()
 if current_date.weekday() == 6:
@@ -33,12 +40,6 @@ if current_date.weekday() == 6:
     ShutdownTimes = [['17:40', 45], ['21:30', 5]]
 if current_date.weekday() == 5:
     pass
-
-# 更新
-try:
-    import Update
-except Exception as e:
-    print(f'更新时出现错误: {e}')
 
 # 等待
 logger.info(
