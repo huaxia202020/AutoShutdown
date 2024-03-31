@@ -30,6 +30,7 @@ if is_old(os.path.getmtime('./UpdateLogs.txt')):
     with open('./UpdateLogs.txt', 'a') as ulf:
         ulf.write("同步更新时间:{}-{}-{} {}:{}".format(lt.tm_year,lt.tm_mon,lt.tm_mday,lt.tm_hour,lt.tm_min))
         ulf.write("  拉取版本推送时间：{}-{}-{} {}:{}".format(lo_push_time.tm_year,lo_push_time.tm_mon,lo_push_time.tm_mday,lo_push_time.tm_hour,lo_push_time.tm_min))
+        ulf.write("\n")
     print('已完成从GitHUb的同步更新')
 else:
     print('AS在GitHub中无新的推送')
