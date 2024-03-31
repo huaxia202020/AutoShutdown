@@ -27,7 +27,7 @@ if is_old(os.path.getmtime('./UpdateLogs.txt')):
     shutil.rmtree('./AutoShutdown-master')
     # 添加更新日志
     lt = time.localtime(time.time())
-
+    #获取推送时间
     lo_push_time = UpdateLib.lo_push_time
     with open('./UpdateLogs.txt', 'a') as ulf:
         ulf.write("同步更新时间:{}-{}-{} {}:{}".format(lt.tm_year, lt.tm_mon, lt.tm_mday, lt.tm_hour, lt.tm_min))
