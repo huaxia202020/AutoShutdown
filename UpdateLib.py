@@ -36,6 +36,7 @@ def is_old(old_time):
     # 注意8小时的时差
     new_time = time.mktime(time.strptime(all_info["pushed_at"], '%Y-%m-%dT%H:%M:%SZ')) + 3600 * 8
     lo_old_time = time.localtime(old_time)
+    global lo_push_time
     lo_push_time = time.localtime(new_time)
     print("最后更新时间:{}-{}-{} {}:{}".format(lo_old_time.tm_year, lo_old_time.tm_mon,
                                                lo_old_time.tm_mday, lo_old_time.tm_hour,
