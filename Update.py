@@ -1,6 +1,7 @@
 import shutil
 import zipfile
 
+import UpdateLib
 from UpdateLib import *
 
 # 更新日志初始化
@@ -27,6 +28,7 @@ if is_old(os.path.getmtime('./UpdateLogs.txt')):
     # 添加更新日志
     lt = time.localtime(time.time())
 
+    lo_push_time = UpdateLib.lo_push_time
     with open('./UpdateLogs.txt', 'a') as ulf:
         ulf.write("同步更新时间:{}-{}-{} {}:{}".format(lt.tm_year, lt.tm_mon, lt.tm_mday, lt.tm_hour, lt.tm_min))
         ulf.write(
