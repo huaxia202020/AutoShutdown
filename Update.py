@@ -7,7 +7,7 @@ from UpdateLib import *
 # 更新日志初始化
 if not os.path.exists('./UpdateLogs.txt'):
     lt=time.localtime(time.time())
-    open('./UpdateLogs.txt', 'w',encoding='utf-8').write("日志创建时间:{}-{}-{} {}:{}".format(lt.tm_year,lt.tm_mon,lt.tm_mday,lt.tm_hour,lt.tm_min) + "\n")
+    open('./UpdateLogs.txt', 'w').write("日志创建时间:{}-{}-{} {}:{}".format(lt.tm_year,lt.tm_mon,lt.tm_mday,lt.tm_hour,lt.tm_min) + "\n")
 
 # 更新流程
 if is_old(os.path.getmtime('./UpdateLogs.txt')):
