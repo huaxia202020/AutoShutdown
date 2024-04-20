@@ -53,7 +53,7 @@ while ShutdownSec > get_now_sec():
     time.sleep(1)
     if not IsShow:
         if ShutdownSec - showToastTime * 60 < get_now_sec():
-            show_toast(Decimal((ShutdownSec - get_now_sec()) / 60).quantize(Decimal("0.1"), rounding="ROUND_HALF_UP"))
+            show_shutdown_toast(Decimal((ShutdownSec - get_now_sec()) / 60).quantize(Decimal("0.1"), rounding="ROUND_HALF_UP"))
             IsShow = True
 
     print('\r关机倒计时:' + format_seconds(ShutdownSec - get_now_sec()), end='')

@@ -22,12 +22,12 @@ def shutdown():
     logger.info("已进入关机进程")
     print("已进入关机进程")
     time.sleep(120)
-    show_toast(1)
+    show_shutdown_toast(1)
     time.sleep(30)
     os.system("shutdown -s -t 30")
     os.system("start /MAX .")
     exit()
 
 
-def show_toast(st):
-    toast('AutoShutdown', '计算机将在' + str(st) + '分钟后关闭')
+def show_shutdown_toast(st):
+    toast('AutoShutdown', '计算机将在{}分钟后关闭,您可以现在关闭程序以取消关机或在30秒后点击程序根目录下的脚本以取消'.format(st))
