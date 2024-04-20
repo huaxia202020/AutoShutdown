@@ -5,9 +5,23 @@ from ShutdownLib import *
 
 os.system("title 这是一个无害的小程序,请不要随意关闭它")
 
+# 更新
+try:
+    import Update
+except Exception as e:
+    print(f'更新时出现错误: {e}')
+
 # 数据定义
 ShutdownTimes = [['12:00', 35], ['17:15', 55], ['21:30', 5]]
 IsShow = False
+
+# 排除处理
+current_date = datetime.datetime.now().date()
+if current_date.weekday() == 6:
+    toast('AutoShutdown', '今天为星期日，启用新的关机计划')
+    ShutdownTimes = [['17:40', 45], ['21:05', 5]]
+if current_date.weekday() == 5:
+    pass
 
 # 数据整理
 # 排序
@@ -29,19 +43,7 @@ for i in ShutdownTimes:
     if int(t[0]) * 3600 + int(t[1]) * 60 == ShutdownSec:
         showToastTime = i[1]
 
-# 更新
-try:
-    import Update
-except Exception as e:
-    print(f'更新时出现错误: {e}')
 
-# 排除处理
-current_date = datetime.datetime.now().date()
-if current_date.weekday() == 6:
-    toast('AutoShutdown', '今天为星期日，启用新的关机计划')
-    ShutdownTimes = [['17:40', 45], ['21:30', 5]]
-if current_date.weekday() == 5:
-    pass
 
 # 等待
 logger.info(
