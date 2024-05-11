@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from ShutdownLib import *
 
-os.system("title 这是一个无害的小程序,请不要随意关闭它")
+os.system("title 自动关机脚本")
 
 # 更新
 try:
