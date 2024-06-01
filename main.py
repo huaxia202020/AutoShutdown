@@ -18,7 +18,7 @@ IsShow = False
 # 排除处理
 current_date = datetime.datetime.now().date()
 if current_date.weekday() == 6:
-    toast('AutoShutdown', '今天为星期日，启用新的关机计划')
+    toast('AutoShutdown', '星期日，启用新的关机计划')
     ShutdownTimes = [['17:05', 45], ['21:30', 5]]
 if current_date.weekday() == 5:
     pass
