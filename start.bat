@@ -1,3 +1,3 @@
 cd /d %~dp0
-start /MIN cmd.exe /K "python main.py && exit"
+start /MIN cmd.exe /K "pythonw main.py && exit"
 exit

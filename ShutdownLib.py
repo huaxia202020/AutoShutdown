@@ -2,7 +2,7 @@ import os
 import time
 
 from win11toast import toast
-
+from tkinter import messagebox
 from LogLib import logger
 
 
@@ -21,13 +21,12 @@ def format_seconds(seconds):
 def shutdown():
     logger.info("已进入关机进程")
     print("已进入关机进程")
-    time.sleep(120)
-    show_shutdown_toast(1)
-    time.sleep(30)
-    os.system("shutdown -s -t 30")
-    os.system("start /MAX .")
+    time.sleep(240)
+    os.system("shutdown -s -t 60")
+    if messagebox.askokcancel("提示", "电脑将在1分钟后关机，是否取消"):
+        os.system("shutdown -a")
     exit()
 
 
 def show_shutdown_toast(st):
-    toast('AutoShutdown', '计算机将在{}分钟后关闭,您可以现在关闭程序以取消关机或在30秒后点击程序根目录下的脚本以取消'.format(st))
+    toast('AutoShutdown', '计算机将在{}分钟后关闭'.format(st))
