@@ -11,6 +11,7 @@ try:
     import Update
 except Exception as e:
     print(f'更新时出现错误: {e}')
+    logger.error(f'更新时出现错误: {e}')
 
 # 数据定义
 ShutdownTimes = [['9:10', 45], ['12:10', 45], ['17:00', 45], ['21:30', 5]]
