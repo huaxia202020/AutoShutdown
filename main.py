@@ -8,7 +8,10 @@ os.system("title 计划关机")
 
 # 更新
 try:
-    import Update
+    if not os.path.exists("./Update.lock"):
+        import Update
+    else:
+        print("更新已锁定")
 except Exception as e:
     print(f'更新时出现错误: {e}')
     logger.error(f'更新时出现错误: {e}')
@@ -46,8 +49,8 @@ for i in ShutdownTimes:
 
 # 等待
 logger.info(
-    "AS计划关机已启动,关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
-print("AS计划关机已启动,关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
+    "AS计划关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
+print("AS计划关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
 while ShutdownSec > get_now_sec():
     time.sleep(1)
     if not IsShow:
