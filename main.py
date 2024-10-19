@@ -4,8 +4,8 @@ from decimal import Decimal
 from ShutdownLib import *
 
 os.system("title 计划关机")
-
-
+with open("./Running.lock","w") as f:
+    pass
 # 更新
 try:
     if not os.path.exists("./Update.lock"):

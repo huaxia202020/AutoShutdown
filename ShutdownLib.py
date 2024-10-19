@@ -20,6 +20,7 @@ def format_seconds(seconds):
 
 def shutdown():
     logger.info("已进入关机进程")
+    os.system("del Running.lock")
     print("已进入关机进程")
     time.sleep(240)
     os.system("shutdown -s -t 60")
