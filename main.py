@@ -18,7 +18,7 @@ except Exception as e:
 
 # 数据定义
 ShutdownTimes = [['9:10', 45], ['12:10', 45], ['17:00', 45], ['21:30', 5]]
-IsShow = False
+IsShow = True
 
 # 排除处理
 current_date = datetime.datetime.now().date()
