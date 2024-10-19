@@ -29,4 +29,5 @@ def shutdown():
 
 
 def show_shutdown_toast(st):
-    toast('AutoShutdown', '计算机将在{}分钟后关闭'.format(st), icon=r".\Shutdown.ico")
+    toast('AutoShutdown', '计算机将在{}分钟后关闭'.format(st))
+    #  , icon=r".\Shutdown.ico"
