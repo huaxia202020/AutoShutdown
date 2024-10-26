@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 from time import sleep
 
 from win11toast import toast
@@ -38,8 +39,13 @@ def shutdown():
     window = win32gui.GetForegroundWindow()
 
     pyautogui.hotkey("win", "d")
+    # ti = datetime.datetime.now() + datetime.timedelta(minutes=1)
+    # ti_s = ti.strftime("%H:%M")
+    # os.system('schtasks /create /tn "定时关机" /tr shutdown.exe -s /sc once /z /st ' + ti_s)
     os.system("shutdown -s -t 60")
-    if messagebox.askokcancel("提示", "电脑将在1分钟后关机，点击确定延迟5分钟，点击取消将取消关机计划"):
+    if messagebox.askokcancel("提示",
+                              "电脑将在1分钟后关机\n点击确定延迟5分钟其间不会再有任何提示\n点击取消将取消关机计划"):
+        os.system("shutdown -a")
         os.system("shutdown -s -t 300")
     else:
         os.system("shutdown -a")
