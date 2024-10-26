@@ -1,9 +1,19 @@
 import os
 import time
+from time import sleep
 
 from win11toast import toast
 from tkinter import messagebox
 from LogLib import logger
+
+try:
+    import pyautogui
+    import win32gui, win32con
+except ImportError:
+    os.system("pip install pyautogui -i https://pypi.tuna.tsinghua.edu.cn/simple some-package")
+    os.system("pip install pywin32 -i https://pypi.tuna.tsinghua.edu.cn/simple some-package")
+    import pyautogui
+    import win32gui, win32con
 
 
 # 关机函数定义
@@ -20,12 +30,23 @@ def format_seconds(seconds):
 
 def shutdown():
     logger.info("已进入关机进程")
-    os.system("del Running.lock")
     print("已进入关机进程")
+    if os.path.isfile("Running.lock"):
+        os.remove("Running.lock")
     time.sleep(240)
+    sleep(1)
+    window = win32gui.GetForegroundWindow()
+
+    pyautogui.hotkey("win", "d")
     os.system("shutdown -s -t 60")
-    if messagebox.askokcancel("提示", "电脑将在1分钟后关机，是否取消"):
+    if messagebox.askokcancel("提示", "电脑将在1分钟后关机，点击确定延迟5分钟，点击取消将取消关机计划"):
+        os.system("shutdown -s -t 300")
+    else:
         os.system("shutdown -a")
+    win32gui.SetForegroundWindow(window)
+    win32gui.ShowWindow(window, win32con.SW_NORMAL)
+    print(win32gui.GetWindowText(window))
+    sleep(1)
     exit()
 
 

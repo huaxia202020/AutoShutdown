@@ -2,9 +2,10 @@ import datetime
 from decimal import Decimal
 
 from ShutdownLib import *
-# 最小化
+
 import ctypes
 
+# 最小化
 ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
 
 os.system("title 计划关机")
