@@ -21,11 +21,10 @@ except Exception as e:
 # 数据定义
 ShutdownTimes = [['9:10', 45], ['12:25', 45], ['17:00', 45], ['21:30', 5]]
 IsShow = True
-
 # 排除处理
 current_date = datetime.datetime.now().date()
 if current_date.weekday() == 6:
-    pass
+    ShutdownTimes = [['12:15', 45], ['17:40', 45], ['21:30', 5]]
 if current_date.weekday() == 5:
     pass
 
