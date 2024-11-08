@@ -55,12 +55,12 @@ print("AS计划关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600)
 while ShutdownSec > get_now_sec():
     time.sleep(1)
     output_str = "\r"
-    if not IsShow:
-        output_str += '通知倒计时:' + format_seconds(ShutdownSec - showToastTime * 60 - get_now_sec()) + '  '
-        if ShutdownSec - showToastTime * 60 < get_now_sec():
-            show_shutdown_toast(
-                Decimal((ShutdownSec - get_now_sec()) / 60).quantize(Decimal("1"), rounding="ROUND_HALF_UP"))
-            IsShow = True
+    # if not IsShow:
+    #     output_str += '通知倒计时:' + format_seconds(ShutdownSec - showToastTime * 60 - get_now_sec()) + '  '
+    #     if ShutdownSec - showToastTime * 60 < get_now_sec():
+    #         show_shutdown_toast(
+    #             Decimal((ShutdownSec - get_now_sec()) / 60).quantize(Decimal("1"), rounding="ROUND_HALF_UP"))
+    #         IsShow = True
     output_str += '关机倒计时:' + format_seconds(ShutdownSec - get_now_sec())
     print(output_str, end='')
 shutdown()

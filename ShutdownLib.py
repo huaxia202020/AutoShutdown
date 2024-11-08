@@ -1,4 +1,4 @@
-import os,sys
+import os, sys
 import time
 import datetime
 from time import sleep
@@ -10,7 +10,7 @@ import threading
 try:
     import pyautogui
     import win32gui, win32con
-    from win11toast import toast
+    import win11toast
     import requests
 except ImportError:
     os.system("pip install win11toast -i https://pypi.tuna.tsinghua.edu.cn/simple some-package")
@@ -39,6 +39,7 @@ stop_signal = False
 
 
 def wait_shut():
+    show_toast('计算机将在1分钟后关机')
     time.sleep(60)
     if not stop_signal:
         os.system("shutdown -s -t 30")
@@ -46,6 +47,7 @@ def wait_shut():
 
 
 def new_wait_shut():
+    show_toast('计算机将在5分钟后关机\n此后不再会有任何提示')
     time.sleep(300)
     os.system("shutdown -s -t 30")
 
@@ -56,9 +58,9 @@ def shutdown():
     print("已进入关机进程")
     if os.path.isfile("Running.lock"):
         os.remove("Running.lock")
-    #time.sleep(240)
+    time.sleep(240)
     shut_thread = threading.Thread(target=wait_shut)
-    #shut_thread.daemon = True
+    shut_thread.daemon = True
     window = win32gui.GetForegroundWindow()
     pyautogui.hotkey("win", "d")
     # os.system("shutdown -s -t 60")
@@ -74,13 +76,17 @@ def shutdown():
     else:
         stop_signal = True
         # os.system("shutdown -a")
-    win32gui.SetForegroundWindow(window)
+    # win32gui.SetForegroundWindow(window)
     win32gui.ShowWindow(window, win32con.SW_NORMAL)
     print(win32gui.GetWindowText(window))
     sleep(1)
     exit()
 
 
-def show_shutdown_toast(st):
-    toast('AutoShutdown', '计算机将在{}分钟后关闭'.format(st))
-    #  , icon=r".\Shutdown.ico"
+# def show_shutdown_toast(st):
+#     toast('AutoShutdown', '计算机将在{}分钟后关闭'.format(st))
+#     #  , icon=r".\Shutdown.ico"
+def show_toast(show_str):
+    path = os.path.abspath('.') + r'\Shutdown.ico'
+    print(path)
+    win11toast.notify('计划关机', show_str, icon=path)
