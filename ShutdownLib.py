@@ -1,4 +1,4 @@
-import os
+import os,sys
 import time
 import datetime
 from time import sleep
@@ -38,10 +38,16 @@ def format_seconds(seconds):
 stop_signal = False
 
 
-def wait_shut(seconds):
-    time.sleep(seconds)
+def wait_shut():
+    time.sleep(6)
     if not stop_signal:
         os.system("shutdown -s -t 30")
+        os._exit(0)
+
+
+def new_wait_shut():
+    time.sleep(3)
+    os.system("shutdown -s -t 30")
 
 
 def shutdown():
@@ -50,9 +56,9 @@ def shutdown():
     print("已进入关机进程")
     if os.path.isfile("Running.lock"):
         os.remove("Running.lock")
-    time.sleep(240)
-    shut_thread = threading.Thread(target=wait_shut, args=(60,))
-    shut_thread.daemon = True
+    #time.sleep(240)
+    shut_thread = threading.Thread(target=wait_shut)
+    #shut_thread.daemon = True
     window = win32gui.GetForegroundWindow()
     pyautogui.hotkey("win", "d")
     # os.system("shutdown -s -t 60")
@@ -60,7 +66,7 @@ def shutdown():
     if messagebox.askokcancel("提示",
                               "电脑将在1分钟后关机\n点击确定延迟5分钟其间不会再有任何提示\n点击取消将取消关机计划"):
         stop_signal = True
-        new_thread = threading.Thread(target=wait_shut, args=(300,))
+        new_thread = threading.Thread(target=new_wait_shut)
         new_thread.start()
         new_thread.join()
         # os.system("shutdown -a")
