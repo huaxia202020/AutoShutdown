@@ -42,14 +42,14 @@ def wait_shut():
     show_toast('计算机将在1分钟后关机')
     time.sleep(60)
     if not stop_signal:
-        os.system("shutdown -s -t 30")
+        os.system("shutdown -s -t 15")
         os._exit(0)
 
 
 def new_wait_shut():
     show_toast('计算机将在5分钟后关机\n此后不再会有任何提示')
     time.sleep(300)
-    os.system("shutdown -s -t 30")
+    os.system("shutdown -s -t 15")
 
 
 def shutdown():
@@ -87,6 +87,4 @@ def shutdown():
 #     toast('AutoShutdown', '计算机将在{}分钟后关闭'.format(st))
 #     #  , icon=r".\Shutdown.ico"
 def show_toast(show_str):
-    path = os.path.abspath('.') + r'\Shutdown.ico'
-    print(path)
-    win11toast.notify('计划关机', show_str, icon=path)
+    win11toast.notify('计划关机', show_str)
