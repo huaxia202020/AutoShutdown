@@ -3,18 +3,24 @@ import time
 import datetime
 from time import sleep
 
-from win11toast import toast
+
 from tkinter import messagebox
 from LogLib import logger
 
 try:
     import pyautogui
     import win32gui, win32con
+    from win11toast import toast
+    import requests
 except ImportError:
+    os.system("pip install win11toast -i https://pypi.tuna.tsinghua.edu.cn/simple some-package")
+    os.system("pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple some-package")
     os.system("pip install pyautogui -i https://pypi.tuna.tsinghua.edu.cn/simple some-package")
     os.system("pip install pywin32 -i https://pypi.tuna.tsinghua.edu.cn/simple some-package")
     import pyautogui
     import win32gui, win32con
+    from win11toast import toast
+    import requests
 
 
 # 关机函数定义
@@ -39,9 +45,6 @@ def shutdown():
     window = win32gui.GetForegroundWindow()
 
     pyautogui.hotkey("win", "d")
-    # ti = datetime.datetime.now() + datetime.timedelta(minutes=1)
-    # ti_s = ti.strftime("%H:%M")
-    # os.system('schtasks /create /tn "定时关机" /tr shutdown.exe -s /sc once /z /st ' + ti_s)
     os.system("shutdown -s -t 60")
     if messagebox.askokcancel("提示",
                               "电脑将在1分钟后关机\n点击确定延迟5分钟其间不会再有任何提示\n点击取消将取消关机计划"):
