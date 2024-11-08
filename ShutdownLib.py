@@ -3,9 +3,9 @@ import time
 import datetime
 from time import sleep
 
-
 from tkinter import messagebox
 from LogLib import logger
+import threading
 
 try:
     import pyautogui
@@ -35,23 +35,39 @@ def format_seconds(seconds):
     return str(int(t_h)).zfill(2) + ":" + str(int(t_m)).zfill(2) + ":" + str(int(t_s)).zfill(2)
 
 
+stop_signal = False
+
+
+def wait_shut(seconds):
+    time.sleep(seconds)
+    if not stop_signal:
+        os.system("shutdown -s -t 30")
+
+
 def shutdown():
+    global stop_signal
     logger.info("已进入关机进程")
     print("已进入关机进程")
     if os.path.isfile("Running.lock"):
         os.remove("Running.lock")
     time.sleep(240)
-    sleep(1)
+    shut_thread = threading.Thread(target=wait_shut, args=(60,))
+    shut_thread.daemon = True
     window = win32gui.GetForegroundWindow()
-
     pyautogui.hotkey("win", "d")
-    os.system("shutdown -s -t 60")
+    # os.system("shutdown -s -t 60")
+    shut_thread.start()
     if messagebox.askokcancel("提示",
                               "电脑将在1分钟后关机\n点击确定延迟5分钟其间不会再有任何提示\n点击取消将取消关机计划"):
-        os.system("shutdown -a")
-        os.system("shutdown -s -t 300")
+        stop_signal = True
+        new_thread = threading.Thread(target=wait_shut, args=(300,))
+        new_thread.start()
+        new_thread.join()
+        # os.system("shutdown -a")
+        # os.system("shutdown -s -t 300")
     else:
-        os.system("shutdown -a")
+        stop_signal = True
+        # os.system("shutdown -a")
     win32gui.SetForegroundWindow(window)
     win32gui.ShowWindow(window, win32con.SW_NORMAL)
     print(win32gui.GetWindowText(window))
