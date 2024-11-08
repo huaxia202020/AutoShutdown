@@ -39,14 +39,14 @@ stop_signal = False
 
 
 def wait_shut():
-    time.sleep(6)
+    time.sleep(60)
     if not stop_signal:
         os.system("shutdown -s -t 30")
         os._exit(0)
 
 
 def new_wait_shut():
-    time.sleep(3)
+    time.sleep(300)
     os.system("shutdown -s -t 30")
 
 
