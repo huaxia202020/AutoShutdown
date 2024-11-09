@@ -1,4 +1,5 @@
 import shutil
+import time
 import zipfile
 
 import UpdateLib
@@ -36,5 +37,7 @@ if is_old(os.path.getmtime('./UpdateLogs.txt')):
                                                        lo_push_time.tm_hour, lo_push_time.tm_min))
         ulf.write("\n")
     print('已完成从GitHUb的同步更新')
+    time.sleep(1)
+    exit()
 else:
     print('AS在GitHub中无新的推送')
