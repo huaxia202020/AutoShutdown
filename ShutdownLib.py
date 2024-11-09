@@ -1,6 +1,5 @@
-import os, sys
+import os
 import time
-import datetime
 from time import sleep
 
 from tkinter import messagebox
