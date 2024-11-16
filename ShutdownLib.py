@@ -86,4 +86,6 @@ def shutdown():
 #     toast('AutoShutdown', '计算机将在{}分钟后关闭'.format(st))
 #     #  , icon=r".\Shutdown.ico"
 def show_toast(show_str):
-    win11toast.notify('计划关机', show_str, scenario='urgent', audio={'silent': 'true'}, duration='short')
+    print(show_str)
+    logger.info(show_str)
+    #win11toast.notify('计划关机', show_str, scenario='urgent', audio={'silent': 'true'}, duration='short')
