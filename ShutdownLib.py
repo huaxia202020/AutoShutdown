@@ -53,8 +53,8 @@ def new_wait_shut():
 
 def shutdown():
     global stop_signal
-    logger.info("已进入关机进程")
-    print("已进入关机进程")
+    logger.info("关机倒计时结束,4分钟后弹出提示")
+    print("关机倒计时结束,4分钟后弹出提示")
     if os.path.isfile("Running.lock"):
         os.remove("Running.lock")
     time.sleep(240)

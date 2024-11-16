@@ -1,10 +1,13 @@
 # 最小化
 import ctypes
 import datetime
+import os
+
 from ShutdownLib import *
 
 ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 6)
-os.system("title 计划关机")
+os.system('title 计划关机')
+print("共{}个日志文件".format(len(os.listdir('./logs'))))
 # 更新
 try:
     if not os.path.exists("./Update.lock"):
@@ -46,8 +49,8 @@ for i in ShutdownTimes:
 
 # 等待
 logger.info(
-    "AS计划关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
-print("AS计划关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
+    "计划关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
+print("计划关机时间:{}:{}(5分钟延迟)".format(int(ShutdownSec / 3600), int(ShutdownSec % 3600 / 60)))
 while ShutdownSec > get_now_sec():
     time.sleep(1)
     output_str = "\r"
