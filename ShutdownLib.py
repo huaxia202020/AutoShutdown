@@ -46,7 +46,7 @@ def wait_shut():
 
 
 def new_wait_shut():
-    show_toast('计算机将在5分钟后关机\n此后不再会有任何提示')
+    show_toast('计算机将在5分钟后关机')
     time.sleep(300)
     os.system("shutdown -s -t 15")
 
