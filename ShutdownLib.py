@@ -65,7 +65,7 @@ def shutdown():
     # os.system("shutdown -s -t 60")
     shut_thread.start()
     if messagebox.askokcancel("提示",
-                              "电脑将在1分钟后关机\n点击确定延迟5分钟其间不会再有任何提示\n点击取消将取消关机计划"):
+                              "确定：延迟5分钟\n取消：取消关机"):
         stop_signal = True
         new_thread = threading.Thread(target=new_wait_shut)
         new_thread.start()
