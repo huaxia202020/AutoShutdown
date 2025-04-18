@@ -1,3 +1,3 @@
 cd /d %~dp0
-start pythonw.exe daemon.py
+start pythonw.exe main.py
 exit
